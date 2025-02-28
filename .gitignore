@@ -6,7 +6,7 @@ __pycache__
 db.sqlite3
 media
 migrations
-
+.ds_store
 # Backup files # 
 *.bak 
 
