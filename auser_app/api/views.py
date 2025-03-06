@@ -34,22 +34,7 @@ def registration_view(request):
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        # data = {}
-        # if serializer.is_valid():
-        #     account = serializer.save()
-        #     data['response'] = "Registration Successful!"
-        #     data['username'] = account.username
-        #     data['email'] = account.email
-
-        #     refresh = RefreshToken.for_user(account)
-        #     data['token'] = {
-        #                          'refresh': str(refresh),
-        #                          'access': str(refresh.access_token),
-               
-        #               }
-        # else:
-        #     data = serializer.errors    
-        # return Response(data)
+       
 @api_view(['POST'])
 def login_view(request):
     username= request.data.get("username") 
