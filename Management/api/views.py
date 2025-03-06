@@ -1,12 +1,10 @@
 from rest_framework.response import Response
 from rest_framework import generics, status, permissions
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
 from Management.api import serializers 
 from Management.models import Book, Borrower
 from datetime import timedelta
 from django.utils.timezone import now
-from Management.api  import pagination
 from .permissions import IsUser, IsLibrarian
 from django.shortcuts import get_object_or_404
 
@@ -128,10 +126,9 @@ class ActiveBorrowed(APIView):
     permission_classes=[permissions.IsAuthenticated, IsUser]   
     def get(self, request):
         user=request.user
-        book_id = request.data.get("book")
 
         active_borrows= Borrower.objects.filter(user_name=user, return_status= False)
-        print(active_borrows)
+
         
         if not  active_borrows:
             return Response ({"meesgae":"No Active Borrowed Book available."})
