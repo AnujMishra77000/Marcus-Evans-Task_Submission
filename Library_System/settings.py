@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Management',
+    'auser_app',
     'rest_framework',
 ]
 
@@ -49,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'middleware.maintenance_middleware.MaintananceMiddleware'
+   
 ]
 
 ROOT_URLCONF = 'Library_System.urls'
@@ -132,8 +135,15 @@ REST_FRAMEWORK = {
        
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    
 }
+from datetime import timedelta
 
 SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS' : True,
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
  }
+
+AUTH_USER_MODEL = 'Management.User'
